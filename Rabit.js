@@ -1,4 +1,7 @@
-class Rabit extends LivingCreature {
+const LivingCreature = require("./livingCreature");
+let random = require('./random');
+
+module.exports = class Rabit extends LivingCreature {
     constructor(x, y, index) {
      super(x,y,index);
         this.energy = 8;

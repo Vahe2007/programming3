@@ -20,4 +20,4 @@ function random (items){
     
     ////////////////////
     
-    let random = require("./random");
+    
