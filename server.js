@@ -19,22 +19,17 @@ grassEaterArr = [];
 predatorArr = [];
 rabitArr = [];
 pacmanArr = [];
+bombArr = [];
 
 Grass = require("./grass")
 GrassEater = require("./GrassEater")
 Predator = require("./predator")
 Rabit = require("./rabit")
 Pacman = require("./pacman")
+Bomb = require("./bomb")
 random = require('./random');
 
-var cl = false;
 
-io.on("connection", function (socket) {
-    if (cl) {
-        setInterval(drawserver, 200);
-        cl = true;
-    }
-});
 
 
 let num1 = 40;
@@ -67,7 +62,9 @@ function generatedMatrix() {
     character(2, 100)
     character(3, 100)
     character(4, 10)
-    character(5, 1);
+    character(5, 5);
+    character(6,7)
+
     return matrix;
 }
 
@@ -99,6 +96,10 @@ for (var y = 0; y < matrix.length; y++) {
             pacmanArr.push(pac)
 
         }
+        else if (matrix[y][x] == 6){
+            var bum = new Bomb(x, y, 6);
+            bombArr.push(bum)
+        }
 
     }
 }
@@ -120,7 +121,12 @@ function drawserver() {
 
     }
     for (var i in pacmanArr) {
-        pacmanArr[i].move()
+      pacmanArr[i].move()
+
+
+    }
+    for (var i in bombArr) {
+        bombArr[i].BUM()
 
 
     }
@@ -134,4 +140,16 @@ function drawserver() {
 
 }
 
-setInterval(drawserver, 1000)
+io.on("connection", (socket) => {
+    socket.emit("matrix", matrix)
+    startGame()
+})
+
+let intervalID;
+
+function startGame() {
+    clearInterval(intervalID)
+    intervalID = setInterval(() => {
+    drawserver()
+    },200)
+}

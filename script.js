@@ -38,6 +38,9 @@ function drawMatrix(data) {
             else if (matrix[y][x] == 5) {
                 fill('brown');
             }
+            else if (matrix[y][x] == 6){
+                fill("black");
+            }
 
             rect(x * side, y * side, side, side);
 
@@ -51,3 +54,11 @@ function drawMatrix(data) {
 }
 
 socket.on("matrix", drawMatrix);
+
+let btn = document.getElementById("btn")
+function BUM() {
+    if(matrix[y][x] == 6){
+        matrix[y][x] == 0
+    }
+}
+btn.addEventListener("click", BUM)
