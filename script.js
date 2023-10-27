@@ -3,8 +3,11 @@ var side = 20;
 let socket = io()
 let num1 = 40;
 let num2 = 40;
-
-
+let btn = document.getElementById("btn")
+let grn = document.getElementById("grn")
+let amr = document.getElementById("amr")
+let asr = document.getElementById("asr")
+let dmr = document.getElementById("dmr")
 
 
 function setup() {
@@ -55,10 +58,6 @@ function drawMatrix(data) {
 
 socket.on("matrix", drawMatrix);
 
-let btn = document.getElementById("btn")
-function BUM() {
-    if(matrix[y][x] == 6){
-        matrix[y][x] == 0
-    }
-}
-btn.addEventListener("click", BUM)
+btn.addEventListener("click", function BUM() {
+    
+})

@@ -1,5 +1,5 @@
 var express = require("express");
-
+var fs = require("fs")
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -35,6 +35,7 @@ random = require('./random');
 let num1 = 40;
 let num2 = 40;
 matrix = [];
+
 
 function createMatrix(num1, num2) {
     for (let i = 0; i < num1; i++) {
@@ -124,6 +125,7 @@ function drawserver() {
       pacmanArr[i].move()
 
 
+
     }
     for (var i in bombArr) {
         bombArr[i].BUM()
@@ -139,6 +141,17 @@ function drawserver() {
     io.sockets.emit("matrix", sendData)
 
 }
+let statobj = {
+    grass : grassArr.length,
+    grassEater : grassEaterArr.length,
+    predator : predatorArr.length,
+    rabit : rabitArr.length,
+    bomb : bombArr.length,
+    pacman : pacmanArr.length
+}
+
+fs.writeFileSync("static.json", JSON.stringify(statobj))
+io.emit("statobj", statobj)
 
 io.on("connection", (socket) => {
     socket.emit("matrix", matrix)
@@ -153,3 +166,4 @@ function startGame() {
     drawserver()
     },200)
 }
+
