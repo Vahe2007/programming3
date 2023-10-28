@@ -1,7 +1,7 @@
 const LivingCreature = require("./livingCreature");
 let random = require('./random');
 
-module.exports = class Bomb extends LivingCreature{
+module.exports = class Wall extends LivingCreature{
     constructor(x, y, index) {
     super(x,y,index);
        this.directions = [];

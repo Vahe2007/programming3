@@ -19,14 +19,14 @@ grassEaterArr = [];
 predatorArr = [];
 rabitArr = [];
 pacmanArr = [];
-bombArr = [];
+wallArr = [];
 
 Grass = require("./grass")
 GrassEater = require("./GrassEater")
 Predator = require("./predator")
 Rabit = require("./rabit")
 Pacman = require("./pacman")
-Bomb = require("./bomb")
+Wall = require("./wall")
 random = require('./random');
 
 
@@ -64,7 +64,7 @@ function generatedMatrix() {
     character(3, 100)
     character(4, 10)
     character(5, 5);
-    character(6,7)
+    character(6,100)
 
     return matrix;
 }
@@ -97,9 +97,10 @@ for (var y = 0; y < matrix.length; y++) {
             pacmanArr.push(pac)
 
         }
-        else if (matrix[y][x] == 6){
-            var bum = new Bomb(x, y, 6);
-            bombArr.push(bum)
+        else if (matrix[y][x] == 6) {
+            var wall = new Wall(x, y, 6);
+            wallArr.push(wall)
+
         }
 
     }
@@ -124,15 +125,8 @@ function drawserver() {
     for (var i in pacmanArr) {
       pacmanArr[i].move()
 
-
-
     }
-    for (var i in bombArr) {
-        bombArr[i].BUM()
-
-
-    }
-
+   
     let sendData = {
         matrix: matrix
     }
@@ -146,12 +140,15 @@ let statobj = {
     grassEater : grassEaterArr.length,
     predator : predatorArr.length,
     rabit : rabitArr.length,
-    bomb : bombArr.length,
+    wall : wallArr.length,
     pacman : pacmanArr.length
 }
 
 fs.writeFileSync("static.json", JSON.stringify(statobj))
 io.emit("statobj", statobj)
+io.emit("matix", matrix)
+
+
 
 io.on("connection", (socket) => {
     socket.emit("matrix", matrix)
@@ -167,3 +164,7 @@ function startGame() {
     },200)
 }
 
+let p = "Grass:"
+function statiic() {
+   p.innnerHTML = "Grass:" + grassArr.length
+}
