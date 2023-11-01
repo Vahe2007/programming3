@@ -3,21 +3,22 @@ let random = require('./random');
 
 module.exports = class Rabit extends LivingCreature {
     constructor(x, y, index) {
-     super(x,y,index);
+        super(x, y, index);
         this.energy = 8;
-     
+
         this.directions = [];
+
     }
 
     getNewCoordinates() {
         this.directions = [
             [this.x - 2, this.y - 2],
-            [this.x+1, this.y - 2],
+            [this.x + 1, this.y - 2],
             [this.x + 2, this.y - 2],
-            [this.x - 2 ,this.y+1],
-            [this.x + 2 ,this.y+1],
+            [this.x - 2, this.y + 1],
+            [this.x + 2, this.y + 1],
             [this.x - 2, this.y + 2],
-            [this.x, this.y +2],
+            [this.x, this.y + 2],
             [this.x + 2, this.y + 2]
         ];
     }
@@ -45,16 +46,16 @@ module.exports = class Rabit extends LivingCreature {
                     break;
                 }
             }
-           this.move++
+            this.move++
         }
-        
+
     }
 
 
 
     move() {
         this.energy++;
-        let emptyCells = this.chooseCell(1) 
+        let emptyCells = this.chooseCell(1)
         let newCell = random(emptyCells)
         if (newCell) {
             let newX = newCell[0]
@@ -67,5 +68,5 @@ module.exports = class Rabit extends LivingCreature {
 
     }
 
-
+    
 }

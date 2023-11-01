@@ -66,7 +66,8 @@ let Summer = document.getElementById("Summer")
 let Autumn = document.getElementById("Autumn")
 let Winter = document.getElementById("Winter")
 
-Spring.addEventListener("click", function changeWeather(){
+
+function changeWeather(){
     if (Spring.innerText === "Spring") {
         colors.grey = "grey"
         colors.green = "green"
@@ -76,33 +77,43 @@ Spring.addEventListener("click", function changeWeather(){
         colors.black = "black"
         colors.white = "white"
     }
-})
-Summer.addEventListener("click", function changeWeather2(){
+}
+function changeWeather2(){
     if (Summer.innerText === "Summer") {
         colors.grey = "#F0E68C"
         colors.green = "#7CFC00"
         colors.yellow = "#DAA520"
 
     }
-})
-Autumn.addEventListener("click", function changeWeather3(){
-     if (Autumn.innerText === "Autumn") {
-        colors.grey = "#FFFF00"
-        colors.yellow = "#FF4500"
-        colors.green = "#DAA520"
-        colors.red = "#FF6347"
-    }
-})
-Winter.addEventListener("click", function changeWeather4(){
+}
+function changeWeather3(){
+    if (Autumn.innerText === "Autumn") {
+       colors.grey = "#FFFF00"
+       colors.yellow = "#FF4500"
+       colors.green = "#DAA520"
+       colors.red = "#FF6347"
+   }
+}
+function changeWeather4(){
     if (Winter.innerText === "Winter") {
         colors.grey = "#F5F5F5"
         colors.yellow = "#20B2AA"
         colors.green = "#87CEEB"
         colors.red = "#663399"
         colors.white = "#808080"
+
     }
-})
+}
 
+Spring.addEventListener("click",changeWeather)
+Summer.addEventListener("click",changeWeather2)
+Autumn.addEventListener("click",changeWeather3)
+Winter.addEventListener("click",changeWeather4)
 
+// io.on("statobj", statobj)
+
+let grassStat = document.getElementById("grass")
+grassStat.innerText = statobj.grass
 
 socket.on("matrix", drawMatrix);
+

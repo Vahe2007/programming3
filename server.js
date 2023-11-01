@@ -14,7 +14,7 @@ server.listen(3000, function () {
     console.log("Example is running on port 3000");
 });
 
-grassArr= [];
+grassArr = [];
 grassEaterArr = [];
 predatorArr = [];
 rabitArr = [];
@@ -22,7 +22,7 @@ pacmanArr = [];
 wallArr = [];
 
 Grass = require("./grass")
-GrassEater = require("./GrassEater")
+GrassEater = require("./grassEater")
 Predator = require("./predator")
 Rabit = require("./rabit")
 Pacman = require("./pacman")
@@ -30,6 +30,11 @@ Wall = require("./wall")
 random = require('./random');
 
 
+for (let i = 0; i < grassArr.length; i++) {
+    let abc = grassArr.IndexOf()
+
+    console.log(abc)
+}
 
 
 let num1 = 40;
@@ -58,13 +63,13 @@ function character(index, count) {
 }
 
 function generatedMatrix() {
-    createMatrix(num1,num2)
+    createMatrix(num1, num2)
     character(1, 100)
     character(2, 100)
     character(3, 100)
     character(4, 10)
     character(5, 5);
-    character(6,100)
+    character(6, 100)
 
     return matrix;
 }
@@ -123,10 +128,10 @@ function drawserver() {
 
     }
     for (var i in pacmanArr) {
-      pacmanArr[i].move()
+        pacmanArr[i].move()
 
     }
-   
+
     let sendData = {
         matrix: matrix
     }
@@ -135,18 +140,27 @@ function drawserver() {
     io.sockets.emit("matrix", sendData)
 
 }
-let statobj = {
-    grass : grassArr.length,
-    grassEater : grassEaterArr.length,
-    predator : predatorArr.length,
-    rabit : rabitArr.length,
-    wall : wallArr.length,
-    pacman : pacmanArr.length
+var statobj = {
+    grass: grassArr.length,
+    grassEater: grassEaterArr.length,
+    predator: predatorArr.length,
+    rabit: rabitArr.length,
+    wall: wallArr.length,
+    pacman: pacmanArr.length
+}
+function main() {
+    fs.writeFileSync("static.json", JSON.stringify(statobj));
+    var text = JSON.parse(fs.readFileSync("static.json"))
+    console.log(text)
 }
 
-fs.writeFileSync("static.json", JSON.stringify(statobj))
+main();
+
+
+
+
 io.emit("statobj", statobj)
-io.emit("matix", matrix)
+io.emit("matrix", matrix)
 
 
 
@@ -160,11 +174,6 @@ let intervalID;
 function startGame() {
     clearInterval(intervalID)
     intervalID = setInterval(() => {
-    drawserver()
-    },200)
-}
-
-let p = "Grass:"
-function statiic() {
-   p.innnerHTML = "Grass:" + grassArr.length
+        drawserver()
+    }, 200)
 }
