@@ -110,10 +110,6 @@ Summer.addEventListener("click",changeWeather2)
 Autumn.addEventListener("click",changeWeather3)
 Winter.addEventListener("click",changeWeather4)
 
-// io.on("statobj", statobj)
-
-let grassStat = document.getElementById("grass")
-grassStat.innerText = statobj.grass
 
 socket.on("matrix", drawMatrix);
 

@@ -30,12 +30,6 @@ Wall = require("./wall")
 random = require('./random');
 
 
-for (let i = 0; i < grassArr.length; i++) {
-    let abc = grassArr.IndexOf()
-
-    console.log(abc)
-}
-
 
 let num1 = 40;
 let num2 = 40;
@@ -155,8 +149,6 @@ function main() {
 }
 
 main();
-
-
 
 
 io.emit("statobj", statobj)
